@@ -2,7 +2,7 @@
 tensorflow学习  
 
 1.定义图
-```  
+```python
 import tensorflow as tf
 import numpy as np
 
@@ -15,7 +15,7 @@ Tensor("Add:0", shape=(), dtype=int32)
 ```
 
 2.定义图并执行结果
-```  
+```python  
 import tensorflow as tf
 import numpy as np
 
@@ -31,7 +31,7 @@ sess.close()
 ```
 
 3.使用tensorBoard
-```
+```python
 import tensorflow as tf
 import numpy as np
 
@@ -42,8 +42,10 @@ with tf.name_scope('sum') as scope:
 #获取session
 sess = tf.Session()
 writer = tf.summary.FileWriter("train", sess.graph)
+
 #添加用于初始化变量的节点
 init = tf.global_variables_initializer()
+
 #然后，加载模型，初始化所有变量
 sess.run(init)
 ```  
