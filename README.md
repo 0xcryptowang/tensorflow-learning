@@ -1,7 +1,7 @@
 # tensorflow-learning
 tensorflow学习  
 
-1.定义图
+1. 定义图
 ```python
 import tensorflow as tf
 import numpy as np
@@ -14,7 +14,7 @@ print(a)
 Tensor("Add:0", shape=(), dtype=int32)  
 ```
 
-2.定义图并执行结果
+2. 定义图并执行结果
 ```python  
 import tensorflow as tf
 import numpy as np
@@ -30,7 +30,7 @@ sess.close()
 5
 ```
 
-3.使用tensorBoard
+3. 使用tensorBoard
 ```python
 import tensorflow as tf
 import numpy as np
@@ -51,14 +51,14 @@ init = tf.global_variables_initializer()
 sess.run(init)
 ```  
 
-3.1命令行启动tensorBoard(进入程序路径，指定tensorBoard可视化日志目录)
+3.1 命令行启动tensorBoard(进入程序路径，指定tensorBoard可视化日志目录)
 ```
 tensorboard --logdir=train
 ```  
 
-3.2web访问tensorBoard
+3.2 web访问tensorBoard
 ```
 http://localhost:6006/
 ```
-3.3访问结果  
+3.3 访问结果  
 ![sum](images/sum.png)
