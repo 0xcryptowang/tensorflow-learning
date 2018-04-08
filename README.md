@@ -60,3 +60,5 @@ tensorboard --logdir=train
 ```
 http://localhost:6006/
 ```
+3.3访问结果  
+![sum](images/sum.png)
