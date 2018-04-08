@@ -44,11 +44,8 @@ sess = tf.Session()
 #输出图到当前路径下到train目录
 writer = tf.summary.FileWriter("train", sess.graph)
 
-#添加用于初始化变量的节点
-init = tf.global_variables_initializer()
-
-#然后，加载模型，初始化所有变量
-sess.run(init)
+#加载模型
+sess.run(a)
 ```  
 
 3.1 命令行启动tensorBoard(进入程序路径，指定tensorBoard可视化日志目录)
