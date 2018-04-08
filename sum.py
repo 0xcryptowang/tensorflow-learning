@@ -8,7 +8,9 @@ with tf.name_scope('sum') as scope:
 #获取session
 sess = tf.Session()
 writer = tf.summary.FileWriter("train", sess.graph)
+
 #添加用于初始化变量的节点
 init = tf.global_variables_initializer()
+
 #然后，加载模型，初始化所有变量
 sess.run(init)
