@@ -11,3 +11,6 @@ writer = tf.summary.FileWriter("train", sess.graph)
 
 #然后，加载模型，初始化所有变量
 sess.run(a)
+
+#关闭session
+sess.close()

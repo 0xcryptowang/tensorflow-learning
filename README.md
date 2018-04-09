@@ -6,7 +6,10 @@ tensorflow学习
 import tensorflow as tf
 import numpy as np
 
+# 定义模型
 a = tf.add(2,3)
+
+# 输出
 print(a)
 ```
 输出:
@@ -19,9 +22,16 @@ Tensor("Add:0", shape=(), dtype=int32)
 import tensorflow as tf
 import numpy as np
 
+# 定义模型
 a = tf.add(2,3)
+
+# 开启session
 sess = tf.Session()
+
+# 输出
 print(sess.run(a))
+
+# 关闭session
 sess.close()
 ```  
 输出:
@@ -34,17 +44,20 @@ sess.close()
 ```python
 import tensorflow as tf
 
-#定义模型
+# 定义模型
 a = tf.add(2.0,3.0)
 
-#获取session
+# 获取session
 sess = tf.Session()
 
-#输出图到当前路径下到train目录
+# 输出图到当前路径下到train目录
 writer = tf.summary.FileWriter("train", sess.graph)
 
-#加载模型
+# 加载模型
 sess.run(a)
+
+# 关闭session
+sess.close()
 ```  
 
 3.1 命令行启动tensorBoard(进入程序路径，指定tensorBoard可视化日志目录)
@@ -70,8 +83,11 @@ a = tf.add(2.0,3.0)
 # 获取session,配置输出设备日志
 sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
 
-#加载模型
+# 加载模型
 sess.run(a)
+
+# 关闭session
+sess.close()
 ```  
 控制台输出内容，可以看出是cpu还是gpu工作:  
 ```
@@ -87,7 +103,7 @@ Add/x: (Const): /job:localhost/replica:0/task:0/device:CPU:0
 2018-04-09 10:05:04.260624: I tensorflow/core/common_runtime/placer.cc:875] Add/x: (Const)/job:localhost/replica:0/task:0/device:CPU:0
 ```  
 
-5.指定设备进行操作  
+5. 指定设备进行操作  
 ```python
 import tensorflow as tf
 
@@ -102,7 +118,7 @@ with tf.device('/cpu:0'):
 # 获取session,配置输出设备日志
 sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
 
-#加载模型
+# 加载模型
 print(sess.run(c))
 ```  
 
@@ -122,4 +138,7 @@ sess = tf.Session(graph=g)
 
 # 执行模型
 sess.run(x)
+
+# 关闭session
+sess.close()
 ```

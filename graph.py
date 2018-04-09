@@ -12,3 +12,6 @@ sess = tf.Session(graph=g)
 
 # 执行模型
 sess.run(x)
+
+#关闭session
+sess.close()

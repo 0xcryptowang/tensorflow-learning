@@ -13,3 +13,6 @@ sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
 
 #加载模型
 print(sess.run(c))
+
+#关闭session
+sess.close()
