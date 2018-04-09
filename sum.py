@@ -14,3 +14,6 @@ sess.run(a)
 
 #关闭session
 sess.close()
+
+# 关闭写入
+writer.close()
