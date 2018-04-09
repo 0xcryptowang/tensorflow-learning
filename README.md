@@ -1,7 +1,7 @@
 # tensorflow-learning
 tensorflow学习  
 
-1. 定义图
+1. 定义模型
 ```python
 import tensorflow as tf
 import numpy as np
@@ -14,7 +14,7 @@ print(a)
 Tensor("Add:0", shape=(), dtype=int32)  
 ```
 
-2. 定义图并执行结果
+2. 定义模型并执行结果
 ```python  
 import tensorflow as tf
 import numpy as np
@@ -34,7 +34,7 @@ sess.close()
 ```python
 import tensorflow as tf
 
-#定义图
+#定义模型
 a = tf.add(2.0,3.0)
 
 #获取session
@@ -64,7 +64,7 @@ http://localhost:6006/
 
 import tensorflow as tf
 
-# 定义图
+# 定义模型
 a = tf.add(2.0,3.0)
 
 # 获取session,配置输出设备日志
@@ -104,4 +104,22 @@ sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
 
 #加载模型
 print(sess.run(c))
+```  
+
+6. 指定图进行操作  
+```python
+import tensorflow as tf
+
+# 创建新图
+g = tf.Graph()
+
+# 将新图设置成默认图，并指定模型
+with g.as_default():
+    x = tf.add(3,5)
+
+# 创建指定图的session
+sess = tf.Session(graph=g)
+
+# 执行模型
+sess.run(x)
 ```

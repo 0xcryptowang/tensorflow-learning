@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-# 定义图
+# 定义模型
 a = tf.add(2.0,3.0)
 
 # 获取session,配置输出设备日志
