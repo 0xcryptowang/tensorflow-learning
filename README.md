@@ -58,6 +58,9 @@ sess.run(a)
 
 # 关闭session
 sess.close()
+
+# 关闭写入
+writer.close()
 ```  
 
 3.1 命令行启动tensorBoard(进入程序路径，指定tensorBoard可视化日志目录)
@@ -171,6 +174,9 @@ with tf.Session(graph=g1,config=tf.ConfigProto(log_device_placement=True)) as se
     # 加载模型
     sess1.run(x1)
 
+    # 关闭写入
+    writer1.close()
+
 # 获取graph2的session，并输出设备日志
 with tf.Session(graph=g2,config=tf.ConfigProto(log_device_placement=True)) as sess2:
     # 定义模型
@@ -179,4 +185,7 @@ with tf.Session(graph=g2,config=tf.ConfigProto(log_device_placement=True)) as se
     writer2 = tf.summary.FileWriter("train", sess2.graph)
     # 加载模型
     sess2.run(x2)
+
+    # 关闭写入
+    writer2.close()
 ```  
