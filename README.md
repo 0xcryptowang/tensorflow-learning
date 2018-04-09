@@ -33,7 +33,6 @@ sess.close()
 3. 使用tensorBoard
 ```python
 import tensorflow as tf
-import numpy as np
 
 #定义图
 a = tf.add(2.0,3.0)
@@ -58,4 +57,32 @@ tensorboard --logdir=train
 http://localhost:6006/
 ```
 3.3 访问结果  
-![sum](images/sum.png)
+![sum](images/sum.png)  
+
+4. 查看tensorflow版本(cpu还是gpu版本)
+```python
+
+import tensorflow as tf
+
+# 定义图
+a = tf.add(2.0,3.0)
+
+# 获取session,配置输出设备日志
+sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
+
+#加载模型
+sess.run(a)
+```  
+控制台输出内容，可以看出是cpu还是gpu工作:  
+```
+2018-04-09 10:05:04.258885: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+Device mapping: no known devices.
+2018-04-09 10:05:04.259206: I tensorflow/core/common_runtime/direct_session.cc:297] Device mapping:
+
+Add: (Add): /job:localhost/replica:0/task:0/device:CPU:0
+2018-04-09 10:05:04.260529: I tensorflow/core/common_runtime/placer.cc:875] Add: (Add)/job:localhost/replica:0/task:0/device:CPU:0
+Add/y: (Const): /job:localhost/replica:0/task:0/device:CPU:0
+2018-04-09 10:05:04.260546: I tensorflow/core/common_runtime/placer.cc:875] Add/y: (Const)/job:localhost/replica:0/task:0/device:CPU:0
+Add/x: (Const): /job:localhost/replica:0/task:0/device:CPU:0
+2018-04-09 10:05:04.260624: I tensorflow/core/common_runtime/placer.cc:875] Add/x: (Const)/job:localhost/replica:0/task:0/device:CPU:0
+```
