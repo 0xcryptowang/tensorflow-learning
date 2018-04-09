@@ -189,3 +189,114 @@ with tf.Session(graph=g2,config=tf.ConfigProto(log_device_placement=True)) as se
     # 关闭写入
     writer2.close()
 ```  
+
+8. 线性回归
+```
+我们经常听说保险公司使用例如一个社区的火灾和盗贼去衡量一个社区的安全程度，我的问题是，这是不是多余的，
+火灾和盗贼在一个社区里是否是相关的，如果相关，那么我们能不能找到他们的关系
+
+换句话说，我们能不能找到一个函数f，如果X是火灾数并且Y是盗贼数，是否存在Y=f(X)？
+
+给出这个关系，如果我们有特定社区的火灾数我们能不能预测这一区域的盗贼数
+
+我们有 the U.S. Commission on Civil Rights, courtesy of C engage Learning 的一
+个数据集(data目录下的fire_theft.xls文件)
+
+数据集描述：
+名称：芝加哥的火灾和盗贼
+X=每1000住房单元的活仔数
+Y=每1000人口的盗贼数
+每对数据取自地区码不同的芝加哥的42个区域
+
+方案：
+首先假设火灾数和盗贼数成线性关系：Y=wX+b
+我们需要找到参数w和b，通过平方差误差作为的损失函数：（Y - Y_predicted)²
+```  
+实现代码如下：
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import tensorflow as tf
+import xlrd
+
+# 火灾数据集文件路径
+DATA_FILE = 'data/fire_theft.xls'
+
+# 读取xls文件
+book = xlrd.open_workbook(DATA_FILE, encoding_override="utf-8")
+
+# 获得第一个sheet
+sheet = book.sheet_by_index(0)
+
+# 取出每一行的值构建成数组
+# 1.for i in range(1, sheet.nrows)遍历sheet的所有行
+# 2.sheet.row_values(i)取出一行的值
+# 3.np.asarray(...）构建成数组
+data = np.asarray([sheet.row_values(i) for i in range(1, sheet.nrows)])
+
+# 样本数量
+n_samples = sheet.nrows - 1
+
+# 定义占位符，并起名
+X = tf.placeholder(tf.float32, name='X')
+Y = tf.placeholder(tf.float32, name='Y')
+
+# 定义变量，初始化为0，并起名
+w = tf.Variable(0.0, name='weights')
+b = tf.Variable(0.0, name='bias')
+
+# 创建模型预测Y Y=wX+b
+Y_predicted = X * w + b
+
+# 使用平方误差构建损失函数（Y - Y_predicted)²
+loss = tf.square(Y - Y_predicted, name='loss')
+
+# 使用实现梯度下降算法的优化器，初始学习率为0.001，最小化损失函数
+optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.001).minimize(loss)
+
+# 获取session
+with tf.Session() as sess:
+    # 初始化变量（比如:w和b）
+    sess.run(tf.global_variables_initializer())
+    # 输出图到当前路径下到train目录
+    writer = tf.summary.FileWriter('train', sess.graph)
+
+    # 训练模型100次
+    for i in range(100):
+        # 初始化损失函数为0
+        total_loss = 0
+        for x, y in data:
+            # 获取损失函数的值
+            _, l = sess.run([optimizer, loss], feed_dict={X: x, Y:y})
+            # 累加总损失函数的值
+            total_loss += l
+        # 输出每次的训练平均损失值 （截止到当次循环完成的总损失值/总样本数）
+        print ('Epoch {0}: {1}'.format(i, total_loss/n_samples))
+
+    # 关闭输出
+    writer.close()
+
+    # 执行模型并输出模型结果
+    w_value, b_value = sess.run([w, b])
+
+
+# 取出值
+X, Y = data.T[0], data.T[1]
+
+# 真实值图形显示
+plt.plot(X, Y, 'bo', label='Real data')
+
+# 预测数据图形显示
+plt.plot(X, X * w_value + b_value, 'r', label='Predicted data')
+
+# 添加图例的标注
+plt.legend()
+
+# 展示图形
+plt.show()
+```  
+图形结果：  
+![lineRegression](images/lineRegression.png)  
+
+tensorBoard结果：
+![lineRegressionGraph](images/lineRegressionGraph.png)
