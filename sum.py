@@ -1,5 +1,4 @@
 import tensorflow as tf
-import numpy as np
 
 #定义图
 a = tf.add(2.0,3.0)
