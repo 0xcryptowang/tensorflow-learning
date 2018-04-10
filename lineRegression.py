@@ -46,9 +46,6 @@ with tf.Session() as sess:
     # 输出图到当前路径下到train目录
     writer = tf.summary.FileWriter('train', sess.graph)
 
-    # 关闭输出
-    writer.close()
-
     # 训练模型100次
     for i in range(100):
         # 初始化损失函数为0
@@ -64,6 +61,8 @@ with tf.Session() as sess:
     # 执行模型并输出模型结果
     w_value, b_value = sess.run([w, b])
 
+    # 关闭输出
+    writer.close()
 
 # 取出值
 X, Y = data.T[0], data.T[1]
