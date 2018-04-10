@@ -341,26 +341,15 @@ import numpy as np
 from scipy import stats
 
 x = np.arange(-5, 5, 0.1)
-y = stats.norm.pdf(x, 0, 0.01)
+y = stats.norm.pdf(x, 0, 0.1)
+z = stats.norm.pdf(x, 0, 0.4)
+
 
 plt.plot(x, y)
+plt.plot(x, z)
 plt.show()
 ```
-![normal_distribution1](images/normal_distribution1.jpg)
-
-```python
-import matplotlib.pyplot as plt
-import numpy as np
-from scipy import stats
-
-x = np.arange(-5, 5, 0.1)
-y = stats.norm.pdf(x, 0, 0.4)
-
-plt.plot(x, y)
-plt.show()
-```
-![normal_distribution2](images/normal_distribution2.jpg)
-
+![normal_distribution](images/normal_distribution.jpg)
 
 
 MNIST可能是最受欢迎的数据集之一，被用于各种图像处理模型，他是一个首页数字的数据集：
