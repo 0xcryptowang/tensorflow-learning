@@ -334,6 +334,35 @@ with tf.Session() as sess:
  [ 0.01100144 -0.00340243  0.00528982]]
 ```
 
+正态分布标准差影响:
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy import stats
+
+x = np.arange(-5, 5, 0.1)
+y = stats.norm.pdf(x, 0, 0.01)
+
+plt.plot(x, y)
+plt.show()
+```
+![normal_distribution1](images/normal_distribution1.jpg)
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy import stats
+
+x = np.arange(-5, 5, 0.1)
+y = stats.norm.pdf(x, 0, 0.4)
+
+plt.plot(x, y)
+plt.show()
+```
+![normal_distribution2](images/normal_distribution2.jpg)
+
+
+
 MNIST可能是最受欢迎的数据集之一，被用于各种图像处理模型，他是一个首页数字的数据集：
 
 ![MNIST](images/MNIST.png)
