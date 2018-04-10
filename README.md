@@ -303,7 +303,25 @@ tensorBoard结果：
 
 9. 逻辑回归（手写体识别）
 
-tf.random_normal(从正态分布输出随机值)
+【准备知识】正态分布标准差影响:
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy import stats
+
+x = np.arange(-5, 5, 0.1)
+y = stats.norm.pdf(x, 0, 0.1)
+z = stats.norm.pdf(x, 0, 0.4)
+
+
+plt.plot(x, y)
+plt.plot(x, z)
+plt.show()
+```
+![normal_distribution](images/normal_distribution.jpg)
+
+
+【准备api】tf.random_normal(从正态分布输出随机值)
 
 ```
 random_normal(shape,mean=0.0,stddev=1.0,dtype=tf.float32,seed=None,name=None)
@@ -334,25 +352,9 @@ with tf.Session() as sess:
  [ 0.01100144 -0.00340243  0.00528982]]
 ```
 
-正态分布标准差影响:
-```python
-import matplotlib.pyplot as plt
-import numpy as np
-from scipy import stats
-
-x = np.arange(-5, 5, 0.1)
-y = stats.norm.pdf(x, 0, 0.1)
-z = stats.norm.pdf(x, 0, 0.4)
-
-
-plt.plot(x, y)
-plt.plot(x, z)
-plt.show()
-```
-![normal_distribution](images/normal_distribution.jpg)
-
-
-MNIST可能是最受欢迎的数据集之一，被用于各种图像处理模型，他是一个首页数字的数据集：
+【数据集介绍】MNIST可能是最受欢迎的数据集之一，被用于各种图像处理模型，他是一个首页数字的数据集，每个图片28*28像素，
+ 拉伸为1维张量长度为784，每一个都有一个标签，比如第一行标签为0，第二行为1……
+ TFLearn（tf的一个简单接口）有一个让你可以从Yan Lecun个人网站加载MNIST数据集的脚本，并且把它分为训练集，验证集和测试集图片如下：
 
 ![MNIST](images/MNIST.png)
 
