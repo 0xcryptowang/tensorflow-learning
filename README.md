@@ -256,25 +256,26 @@ optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.001).minimize(loss
 
 # 获取session
 with tf.Session() as sess:
-    # 初始化变量（比如:w和b）
+    # 初始化全局变量（比如:w和b）
     sess.run(tf.global_variables_initializer())
+
     # 输出图到当前路径下到train目录
     writer = tf.summary.FileWriter('train', sess.graph)
+
+    # 关闭输出
+    writer.close()
 
     # 训练模型100次
     for i in range(100):
         # 初始化损失函数为0
         total_loss = 0
         for x, y in data:
-            # 获取损失函数的值
-            _, l = sess.run([optimizer, loss], feed_dict={X: x, Y:y})
+            # 获取损失函数的值（sess.run执行了optimizer, loss 2个函数，_, lost表示分别赋值函数执行结果，_表示忽略结果）
+            _, lost = sess.run([optimizer, loss], feed_dict={X: x, Y:y})
             # 累加总损失函数的值
-            total_loss += l
-        # 输出每次的训练平均损失值 （总损失值/总样本数）
+            total_loss += lost
+        # 输出每次的训练平均损失值 （截止到当次循环完成的总损失值/总样本数）
         print ('Epoch {0}: {1}'.format(i, total_loss/n_samples))
-
-    # 关闭输出
-    writer.close()
 
     # 执行模型并输出模型结果
     w_value, b_value = sess.run([w, b])
@@ -300,3 +301,7 @@ plt.show()
 
 tensorBoard结果：
 ![lineRegressionGraph](images/lineRegressionGraph.png)
+
+9. 
+
+
