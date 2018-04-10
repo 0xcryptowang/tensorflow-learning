@@ -190,7 +190,7 @@ with tf.Session(graph=g2,config=tf.ConfigProto(log_device_placement=True)) as se
     writer2.close()
 ```  
 
-8. 线性回归
+8. 线性回归（火灾预测）
 ```
 我们经常听说保险公司使用例如一个社区的火灾和盗贼去衡量一个社区的安全程度，我的问题是，这是不是多余的，
 火灾和盗贼在一个社区里是否是相关的，如果相关，那么我们能不能找到他们的关系
@@ -301,6 +301,41 @@ plt.show()
 tensorBoard结果：
 ![lineRegressionGraph](images/lineRegressionGraph.png)
 
-9.
+9. 逻辑回归（手写体识别）
+
+tf.random_normal(从正态分布输出随机值)
+
+```
+random_normal(shape,mean=0.0,stddev=1.0,dtype=tf.float32,seed=None,name=None)
+
+shape：一个一维整数张量或Python数组。代表张量的形状。
+mean：数据类型为dtype的张量值或Python值。是正态分布的均值。
+stddev：数据类型为dtype的张量值或Python值。是正态分布的标准差
+dtype： 输出的数据类型。
+seed：一个Python整数。是随机种子。
+name： 操作的名称(可选)
+```
+
+举例:
+
+```python
+import tensorflow as tf
+
+random_normal = tf.random_normal(shape=[2, 3], stddev=0.01)
+
+with tf.Session() as sess:
+    print(sess.run(random_normal))
+```
+
+输出结果:
+
+```
+[[ 0.00537214  0.00920044 -0.00689021]
+ [ 0.01100144 -0.00340243  0.00528982]]
+```
+
+MNIST可能是最受欢迎的数据集之一，被用于各种图像处理模型，他是一个首页数字的数据集：
+
+![MNIST](images/MNIST.png)
 
 
