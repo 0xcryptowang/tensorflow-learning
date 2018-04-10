@@ -204,7 +204,7 @@ with tf.Session(graph=g2,config=tf.ConfigProto(log_device_placement=True)) as se
 
 数据集描述：
 名称：芝加哥的火灾和盗贼
-X=每1000住房单元的活仔数
+X=每1000住房单元的火灾数
 Y=每1000人口的盗贼数
 每对数据取自地区码不同的芝加哥的42个区域
 
@@ -270,7 +270,7 @@ with tf.Session() as sess:
             _, l = sess.run([optimizer, loss], feed_dict={X: x, Y:y})
             # 累加总损失函数的值
             total_loss += l
-        # 输出每次的训练平均损失值 （截止到当次循环完成的总损失值/总样本数）
+        # 输出每次的训练平均损失值 （总损失值/总样本数）
         print ('Epoch {0}: {1}'.format(i, total_loss/n_samples))
 
     # 关闭输出
