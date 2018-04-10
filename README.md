@@ -352,6 +352,57 @@ with tf.Session() as sess:
  [ 0.01100144 -0.00340243  0.00528982]]
 ```
 
+【准备api】tf.zeros(创建一个所有的参数为０的tensor对象)
+
+```python
+import tensorflow as tf
+
+a = tf.zeros([2, 10])
+
+sess = tf.Session()
+
+print(sess.run(a))
+```
+
+输出:
+
+```
+[[ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+ [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]]
+```
+
+【准备api】tf.matmul(矩阵相乘)
+```python
+import tensorflow as tf
+
+a = tf.random_uniform([2, 3], 0, 10, tf.int32)
+b = tf.random_uniform([3, 4], 0, 10, tf.int32)
+
+c = tf.matmul(a, b)
+
+sess = tf.Session()
+
+print(sess.run(a))
+print("-----------")
+print(sess.run(b))
+print("-----------")
+print(sess.run(c))
+```
+
+输出:
+
+```
+[[6 1 0]
+ [1 2 2]]
+-----------
+[[5 8 7 2]
+ [6 4 7 0]
+ [1 0 6 7]]
+-----------
+[[ 98  28  24  61]
+ [106  68  75  59]]
+```
+
 【数据集介绍】MNIST可能是最受欢迎的数据集之一，被用于各种图像处理模型，他是一个首页数字的数据集，每个图片28*28像素，
  拉伸为1维张量长度为784，每一个都有一个标签，比如第一行标签为0，第二行为1……
  TFLearn（tf的一个简单接口）有一个让你可以从Yan Lecun个人网站加载MNIST数据集的脚本，并且把它分为训练集，验证集和测试集，图片如下：
