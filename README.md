@@ -499,7 +499,7 @@ name：操作的名称(可选)
 
 ![MNIST](images/MNIST.png)
 
-```pyton
+```python
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 import time
