@@ -372,6 +372,7 @@ print(sess.run(a))
 ```
 
 【准备api】tf.matmul(矩阵相乘)
+
 ```python
 import tensorflow as tf
 
@@ -402,6 +403,102 @@ print(sess.run(c))
 [[ 98  28  24  61]
  [106  68  75  59]]
 ```
+
+【准备api】tf.reduce_mean(按某一维度(reduction_indices)计算一个张量的个元素的平均值。)
+
+```
+tf.reduce_mean(input_tensor,  axis=None,  keep_dims=False,  name=None,  reduction_indices=None)
+
+
+input_tensor: 被计算的张量，确保为数字类型。
+
+axis: 方向数轴，如果没有指明，默认是所有数轴都减小为1。
+
+keep_dims: 如果定义true, 则保留维数，但数量个数为0.
+
+name: 操作过程的名称。
+
+reduction_indices: 为了旧函数兼容的数轴。
+
+返回值:降低维数的平均值。
+
+```
+
+举例如下:
+
+```python
+import tensorflow as tf
+
+# 定义张量
+x = [[2, 3, 1],
+     [2, 1, 3],
+     [4, 5, 6]]
+
+# 全部数值求和取平均值
+reduce_mean = tf.reduce_mean(x)
+# 保留y轴（列），x轴(行)求平均
+reduce_mean_x = tf.reduce_mean(x, axis=1, keep_dims=True)
+# 保留x轴（行），y轴(列)求平均
+reduce_mean_y = tf.reduce_mean(x, axis=0, keep_dims=True)
+
+with tf.Session() as sess:
+
+    # （（2+3+1）+（2+1+3）+（4+5+6））／9 = 3
+    print(sess.run(reduce_mean))
+
+    # [
+    # [(2+3+1)/3=2]
+    # [(2+1+3)/3=2]
+    # [(4+5+6)/3=5]
+    #  ]
+    print(sess.run(reduce_mean_x))
+
+    #[[(2+2+4)/3=2  (3+1+5)/3=3 (1+3+6)/3=3]]
+    print(sess.run(reduce_mean_y))
+```
+
+输出结果:
+
+```
+3
+
+[[2]
+ [2]
+ [5]]
+
+[[2 3 3]]
+```
+
+【准备api】tf.nn.softmax(n分类模型)
+
+```
+tf.nn.softmax_cross_entropy_with_logits(logits, labels, name=None)
+
+logits：就是神经网络最后一层的输出，如果有batch的话，它的大小就是[batchsize，num_classes]，单样本的话，大小就是num_classes。
+
+labels：实际的标签，如果有batch的话，它的大小就是[batchsize，num_classes]，单样本的话，大小就是num_classes。
+
+name：操作的名称(可选)
+
+
+```
+
+
+
+【准备api】tf.nn.softmax_cross_entropy_with_logits()
+
+```
+tf.nn.softmax_cross_entropy_with_logits(logits, labels, name=None)
+
+logits：就是神经网络最后一层的输出，如果有batch的话，它的大小就是[batchsize，num_classes]，单样本的话，大小就是num_classes。
+
+labels：实际的标签，如果有batch的话，它的大小就是[batchsize，num_classes]，单样本的话，大小就是num_classes。
+
+name：操作的名称(可选)
+
+
+```
+
 
 【数据集介绍】MNIST可能是最受欢迎的数据集之一，被用于各种图像处理模型，他是一个首页数字的数据集，每个图片28*28像素，
  拉伸为1维张量长度为784，每一个都有一个标签，比如第一行标签为0，第二行为1……
