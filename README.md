@@ -424,7 +424,7 @@ reduction_indices: 为了旧函数兼容的数轴。
 
 ```
 
-举例如下:
+举例:
 
 ```python
 import tensorflow as tf
