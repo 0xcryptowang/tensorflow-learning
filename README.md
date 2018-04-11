@@ -472,13 +472,26 @@ with tf.Session() as sess:
 【准备api】tf.nn.softmax(n分类模型)
 
 ```
-tf.nn.softmax(logits, labels, name=None)
+tf.nn.softmax(logits, name=None)
 
 logits：就是神经网络最后一层的输出，如果有batch的话，它的大小就是[batchsize，num_classes]，单样本的话，大小就是num_classes。
 
-labels：实际的标签，如果有batch的话，它的大小就是[batchsize，num_classes]，单样本的话，大小就是num_classes。
-
 name：操作的名称(可选)
+```
+
+```python
+import tensorflow as tf
+
+A = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+
+with tf.Session() as sess:
+    print(sess.run(tf.nn.softmax(A)))
+```
+
+输出:
+
+```
+[ 0.00426978  0.01160646  0.03154963  0.08576079  0.23312201  0.63369131]
 ```
 
 【准备api】tf.nn.softmax_cross_entropy_with_logits_v2()
@@ -606,4 +619,7 @@ with tf.Session() as sess:
     writer.close()
 ```
 
+对应图如下：  
+
+![logisticRegression](images/logisticRegression.png)
 
