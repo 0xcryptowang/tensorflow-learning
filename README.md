@@ -619,7 +619,7 @@ with tf.Session() as sess:
     writer.close()
 ```
 
-对应图如下：  
+对应图如下：
 
-![logisticRegression](images/logisticRegression.png)
+![logisticRegression](images/logisticRegression.jpg)
 
