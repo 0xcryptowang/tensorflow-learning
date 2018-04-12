@@ -625,10 +625,12 @@ with tf.Session() as sess:
 
 10. word2vec模型
 
+未完待续......
 
 
-参考学习资料：
 ***
+参考学习资料：
+
 1.课程地址: https://web.stanford.edu/class/cs20si/2017/syllabus.html
 
 2.国内视频地址(b站):https://www.bilibili.com/video/av15898988/?p=1
