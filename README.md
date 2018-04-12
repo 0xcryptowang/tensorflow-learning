@@ -633,5 +633,11 @@ with tf.Session() as sess:
 
 1.课程地址: https://web.stanford.edu/class/cs20si/2017/syllabus.html
 
-2.国内视频地址(b站):https://www.bilibili.com/video/av15898988/?p=1
+2.国内视频地址(b站): https://www.bilibili.com/video/av15898988/?p=1
+
+***
+
+如果发现错误欢迎加我微信指正:
+
+![header](images/header.jpg)
 
